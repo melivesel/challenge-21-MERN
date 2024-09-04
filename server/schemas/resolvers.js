@@ -6,7 +6,7 @@ const resolvers = {
     // Define query resolvers here
   },
   Mutation: {
-    createUser: async (parent, args, context, info) => {
+    addUser: async (parent, args, context, info) => {
       const { body } = args;
       const user = await User.create(body);
 
@@ -50,7 +50,7 @@ const resolvers = {
       }
     },
 
-    deleteBook: async (parent, args, context, info) => {
+    removeBook: async (parent, args, context, info) => {
       const { user, params } = args;
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
