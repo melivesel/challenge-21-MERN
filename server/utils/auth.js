@@ -1,6 +1,5 @@
-const jwt = require('jsonwebtoken');
 const { GraphQLError } = require('graphql');
-
+const jwt = require('jsonwebtoken');
 // set token secret and expiration date
 const secret = 'mysecretsshhhhh';
 const expiration = '2h';
@@ -30,8 +29,8 @@ req.user= data;
 return req;
 
 },
-  signToken: function ({ email, username }) {
-    const payload = { email, username};
+  signToken: function ({ email, username}) {
+    const payload = { email, username}; 
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };
