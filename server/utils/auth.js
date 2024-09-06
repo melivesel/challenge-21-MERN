@@ -29,8 +29,8 @@ req.user= data;
 return req;
 
 },
-  signToken: function ({ email, username}) {
-    const payload = { email, username}; 
+  signToken: function ({ _id, email, username}) {
+    const payload = { _id, email, username}; 
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };
