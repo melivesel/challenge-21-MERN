@@ -2,15 +2,14 @@
 
 ## Description
 
-This is a website that should let you search and save books, but there is something wrong with saving to the api. 
-
+This is a website that will allow you to search books and save them to your personal list. 
 ## Installation
 
 The deployed page can be found on [Render](https://challenge-21-mern.onrender.com). 
 
 ## Usage
 
-This website will let you search books by name using the google API. As far as I can tell the framework is there to be able to login and save books, but I cannot figure out why it won't do it. 
+This website will let you search books by name using the google API. You can create a login in order to save your choices and be able to come back to them at a later time. It uses Mongoose for the database, React for the user interface, and express and node for handling javascript on the front and backend. 
 
 ## Credits
 
