@@ -4,13 +4,26 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     // Define query resolvers here
+    me: async (parent, args, context) => {
+      try {
+        if (context.user) {
+          console.log(context.user._id);
+
+          const user = await User.findById(context.user._id);
+          return user;
+        }
+      } catch (err) {
+        console.log(err);
+        throw new Error('Not authenticated');
+      }
+    },
   },
   Mutation: {
     addUser: async (parent, args, context, info) => {
-      
-      console.log (args, context)
+
+      console.log(args, context)
       const user = await User.create(args);
-      
+
 
       if (!user) {
         throw new Error('Something went wrong while creating the user!');
@@ -21,8 +34,8 @@ const resolvers = {
     },
 
     login: async (parent, args, context, info) => {
-      
-      const user = await User.findOne({ $or: [ { email: args.email }] });
+
+      const user = await User.findOne({ $or: [{ email: args.email }] });
 
       if (!user) {
         throw new Error("User not found!");
@@ -39,11 +52,11 @@ const resolvers = {
     },
 
     saveBook: async (parent, args, context, info) => {
-      const { user, body } = args;
+      const { input } = args;
       try {
         const updatedUser = await User.findOneAndUpdate(
-          { _id: user._id },
-          { $addToSet: { savedBooks: body } },
+          { _id: context.user._id },
+          { $addToSet: { savedBooks: input } },
           { new: true, runValidators: true }
         );
         return updatedUser;

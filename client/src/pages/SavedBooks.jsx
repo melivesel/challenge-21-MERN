@@ -16,11 +16,11 @@ import { QUERY_ME } from '../utils/queries'; // Import the GET_ME query
 const SavedBooks = () => {
   const { loading, error, data } = useQuery(QUERY_ME); // Execute the GET_ME query
 
-  useEffect(() => {
-    getUserData();
-  }, [data]); // Trigger getUserData when data changes
+  // useEffect(() => {
+  //   getUserData();
+  // }, [data]); // Trigger getUserData when data changes
 
-  const userData = data ? data.getMe : null; // Check if data exists before accessing getMe
+  const userData = data ? data.me : null; // Check if data exists before accessing getMe
 
   const [removeBook] = useMutation(REMOVE_BOOK); // Execute the REMOVE_BOOK mutation
 

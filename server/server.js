@@ -17,10 +17,13 @@ const startApolloServer = async () => {
   
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
+
+  console.log("test")
   
   app.use('/graphql', expressMiddleware(server, {
      context: authMiddleware
   }));
+
   
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));
